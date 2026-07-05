@@ -1,24 +1,51 @@
-# Enterprise 6 Toggle/Pause Patch
+# Web Monitor Enterprise 6
 
-Dieser Patch bringt die Funktion zurück, einzelne Monitore zu pausieren oder wieder zu aktivieren.
+Sauberer Neustart ohne V4/V5-Dateimischung.
 
-## Anwendung
+## Enthalten
 
-1. ZIP entpacken.
-2. `apply_toggle_patch.py` in das Hauptverzeichnis deines Enterprise-6-Projekts kopieren.
-3. Im Projektordner ausführen:
+- PostgreSQL
+- Redis vorbereitet
+- FastAPI
+- Argon2 statt bcrypt/passlib
+- Benutzerverwaltung mit Rollen
+- editierbare Monitore
+- Intervall nachträglich änderbar
+- Cron-Ausdrücke
+- Cookiebanner-Handling
+- Playwright-Screenshots
+- Diff-Bilder
+- Benachrichtigungen: Webhook/Discord/Telegram/E-Mail-Grundlage
+- Backups
+- GitHub Actions + GHCR
+- Portainer Stack
+- REST API unter `/docs`
+
+## Lokal starten
 
 ```bash
-python apply_toggle_patch.py
+docker compose up --build
 ```
 
-4. Änderungen committen und pushen:
+Aufruf:
 
-```bash
-git add app/main.py app/templates/index.html app/templates/site.html
-git commit -m "Add monitor pause toggle"
-git push
+```text
+http://localhost:8005
 ```
 
-5. GitHub Actions abwarten.
-6. In Portainer das neue Image aktualisieren.
+Login:
+
+```text
+admin
+admin123
+```
+
+## Portainer
+
+In `stack.portainer.yml` ändern:
+
+```yaml
+image: ghcr.io/DEIN-GITHUB-BENUTZERNAME/web-monitor-enterprise-6:latest
+```
+
+Dann über GitHub Actions bauen lassen, Package öffentlich machen und deployen.
