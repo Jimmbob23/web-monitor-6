@@ -1,51 +1,22 @@
-# Web Monitor Enterprise 6
+# Enterprise 6 Backup/Restore Patch
 
-Sauberer Neustart ohne V4/V5-Dateimischung.
+Diese ZIP ergänzt Backup und Restore für Web Monitor Enterprise 6.
 
-## Enthalten
+Enthalten:
 
-- PostgreSQL
-- Redis vorbereitet
-- FastAPI
-- Argon2 statt bcrypt/passlib
-- Benutzerverwaltung mit Rollen
-- editierbare Monitore
-- Intervall nachträglich änderbar
-- Cron-Ausdrücke
-- Cookiebanner-Handling
-- Playwright-Screenshots
-- Diff-Bilder
-- Benachrichtigungen: Webhook/Discord/Telegram/E-Mail-Grundlage
-- Backups
-- GitHub Actions + GHCR
-- Portainer Stack
-- REST API unter `/docs`
+```text
+app/main.py
+app/services/backups.py
+app/templates/backups.html
+app/templates/base.html
+```
 
-## Lokal starten
+Nach dem Kopieren:
 
 ```bash
-docker compose up --build
+git add app/main.py app/services/backups.py app/templates/backups.html app/templates/base.html
+git commit -m "Add backup and restore"
+git push
 ```
 
-Aufruf:
-
-```text
-http://localhost:8005
-```
-
-Login:
-
-```text
-admin
-admin123
-```
-
-## Portainer
-
-In `stack.portainer.yml` ändern:
-
-```yaml
-image: ghcr.io/DEIN-GITHUB-BENUTZERNAME/web-monitor-enterprise-6:latest
-```
-
-Dann über GitHub Actions bauen lassen, Package öffentlich machen und deployen.
+Dann GitHub Actions abwarten und Portainer aktualisieren.
